@@ -17,11 +17,11 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvUserList"
+        android:id="@+id/rvRepositoryList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:itemCount="10"
-        tools:listitem="@layout/layout_user_list_item" />
+        tools:listitem="@layout/layout_repository_list_item" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

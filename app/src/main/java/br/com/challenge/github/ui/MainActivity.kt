@@ -1,7 +1,8 @@
-package br.com.challenge.github
+package br.com.challenge.github.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import br.com.challenge.github.R
 import br.com.challenge.github.ui.main.MainFragment
 
 class MainActivity : AppCompatActivity() {

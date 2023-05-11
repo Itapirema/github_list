@@ -1,4 +1,4 @@
-package br.com.challenge.github.ui.main
+package br.com.challenge.github.ui
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -21,6 +21,9 @@ class MainViewModel(private val userUseCase: UserUseCase) : ViewModel() {
 
     private val _user = MutableLiveData<UserDTO>()
     val user: LiveData<UserDTO> = _user
+
+    private val _selectedUser = MutableLiveData<UserDTO>()
+    val selectedUser: LiveData<UserDTO> = _selectedUser
 
     private val _showError = MutableLiveData<String>()
     val showError: LiveData<String> = _showError
@@ -83,5 +86,9 @@ class MainViewModel(private val userUseCase: UserUseCase) : ViewModel() {
                     }
                 })
         }
+    }
+
+    fun setSelectedUser(user: UserDTO) {
+        _selectedUser.value = user
     }
 }

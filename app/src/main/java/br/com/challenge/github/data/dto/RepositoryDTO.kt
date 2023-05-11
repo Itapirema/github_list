@@ -70,7 +70,7 @@ data class RepositoryDTO(
     val archived: Boolean?,
     val disabled: Boolean?,
     val open_issues_count: Int?,
-    val license: LicenceDTO,
+    val license: LicenceDTO?,
     val allow_forking: Boolean?,
     val is_template: Boolean?,
     val web_commit_signoff_required: Boolean?,

@@ -18,7 +18,7 @@
     <fragment
         android:id="@+id/repositoriesFragment"
         android:name="br.com.challenge.github.ui.repos.RepositoriesFragment"
-        android:label="RepositoriesFragment"
+        android:label="@string/repositories_title"
         tools:layout="@layout/fragment_repository"/>
 
 </navigation>

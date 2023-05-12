@@ -1,8 +1,6 @@
 package br.com.challenge.github.ui
 
 import android.os.Bundle
-import android.view.Menu
-import android.widget.SearchView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
@@ -24,23 +22,6 @@ class MainActivity : AppCompatActivity() {
     }
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment_content_main)
-        return navController.navigateUp()
-                || super.onSupportNavigateUp()
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.menu_main, menu)
-        (menu.findItem(R.id.search).actionView as SearchView).apply {
-            setOnQueryTextListener(object : SearchView.OnQueryTextListener{
-                override fun onQueryTextSubmit(query: String?): Boolean {
-                    return false
-                }
-
-                override fun onQueryTextChange(newText: String?): Boolean {
-                    return false
-                }
-            })
-        }
-        return true
+        return navController.navigateUp() || super.onSupportNavigateUp()
     }
 }

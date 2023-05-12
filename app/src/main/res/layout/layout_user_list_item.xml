@@ -3,14 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:paddingTop="@dimen/_10sdp">
+    android:layout_height="wrap_content">
 
     <ImageView
         android:id="@+id/imgUser"
         android:layout_width="@dimen/_40sdp"
         android:layout_height="@dimen/_40sdp"
-        android:layout_margin="@dimen/_5sdp"
+        android:layout_margin="@dimen/_10sdp"
         android:contentDescription="@null"
         android:src="@drawable/ic_launcher_background"
         app:layout_constraintEnd_toStartOf="@+id/guideline1"
@@ -35,40 +34,24 @@
         android:id="@+id/txtUserName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/_12sdp"
+        android:textSize="@dimen/_14sdp"
         android:textColor="@color/black"
         app:layout_constraintStart_toEndOf="@+id/guideline1"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         tools:text="Torvald" />
 
-    <TextView
-        android:id="@+id/txtUserAlias"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_5sdp"
-        android:textSize="@dimen/_12sdp"
-        android:textColor="@android:color/darker_gray"
-        app:layout_constraintStart_toEndOf="@+id/txtUserName"
-        app:layout_constraintTop_toTopOf="@+id/txtUserName"
-        app:layout_constraintBottom_toBottomOf="@+id/txtUserName"
-        tools:text="Torvald" />
-
-    <TextView
-        android:id="@+id/txtUserLocation"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="@+id/guideline2"
-        app:layout_constraintStart_toEndOf="@+id/guideline1"
-        app:layout_constraintTop_toBottomOf="@+id/txtUserName"
-        tools:text="Manaus, Am, Brazil" />
-
-    <TextView
-        android:id="@+id/txtMemberOf"
+    <ImageView
+        android:id="@+id/imgArrow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toEndOf="@+id/guideline1"
-        app:layout_constraintTop_toBottomOf="@+id/txtUserLocation"
-        tools:text="Member of " />
+        android:layout_margin="@dimen/_10sdp"
+        android:contentDescription="@null"
+        android:src="@drawable/ic_arrow_forward_24"
+        app:layout_constraintStart_toEndOf="@+id/guideline2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
     <View
         android:id="@+id/divider"
@@ -77,7 +60,7 @@
         android:background="@android:color/black"
         android:layout_marginTop="@dimen/_10sdp"
         android:alpha="0.2"
-        app:layout_constraintTop_toBottomOf="@+id/txtMemberOf"
+        app:layout_constraintTop_toBottomOf="@+id/imgUser"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintVertical_bias="1.0"/>
 

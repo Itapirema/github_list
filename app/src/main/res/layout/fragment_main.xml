@@ -8,6 +8,7 @@
     tools:context=".ui.main.MainFragment">
 
     <ProgressBar
+        android:id="@+id/progress_circular"
         android:layout_width="@dimen/_60sdp"
         android:layout_height="@dimen/_60sdp"
         android:visibility="gone"

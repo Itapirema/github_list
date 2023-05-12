@@ -3,9 +3,12 @@ package br.com.challenge.github.ui.repos
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import br.com.challenge.github.data.dto.RepositoryDTO
 import br.com.challenge.github.databinding.FragmentRepositoryBinding
 import br.com.challenge.github.ui.MainViewModel
@@ -35,10 +38,17 @@ class RepositoriesFragment : Fragment(), RepositoryListAdapter.ItemClickListener
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val activity = requireActivity() as AppCompatActivity
+        activity.supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         binding.rvRepositoryList.adapter = userListAdapter
 
         viewModel.repositoryList.observe(viewLifecycleOwner) {
             userListAdapter.submitList(it)
+        }
+
+        viewModel.showProgress.observe(viewLifecycleOwner) {
+            binding.progressCircular.isVisible = it
         }
 
         viewModel.selectedUser.observe(viewLifecycleOwner) { user ->

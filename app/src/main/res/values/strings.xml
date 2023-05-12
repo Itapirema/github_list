@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Github List</string>
+    <string name="action_search">Pesquisar</string>
+    <string name="search_hint">Digite para pesquisar na lista</string>
 </resources>

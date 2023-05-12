@@ -1,9 +1,11 @@
 package br.com.challenge.github.data.dto
 
+import com.google.gson.annotations.SerializedName
+
 data class LicenceDTO(
     val key: String?,
     val name: String?,
-    val spdx_id: String?,
+    @SerializedName("spdx_id") val spdxId: String?,
     val url: String?,
-    val node_id: String?
+    @SerializedName("node_id") val nodeId: String?
 )

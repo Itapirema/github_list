@@ -20,5 +20,8 @@ data class UserDTO(
     @SerializedName("events_url")val eventsUrl: String?,
     @SerializedName("received_events_url")val receivedEventsUrl: String?,
     val type: String?,
-    @SerializedName("site_admin")val siteAdmin: String?
+    @SerializedName("site_admin")val siteAdmin: String?,
+    val name: String?,
+    val company: String?,
+    val location: String?,
 )

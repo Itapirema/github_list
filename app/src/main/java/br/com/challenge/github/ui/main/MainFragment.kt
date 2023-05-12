@@ -1,7 +1,6 @@
 package br.com.challenge.github.ui.main
 
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import android.widget.SearchView
 import androidx.core.view.MenuHost
@@ -14,6 +13,7 @@ import br.com.challenge.github.R
 import br.com.challenge.github.data.dto.UserDTO
 import br.com.challenge.github.databinding.FragmentMainBinding
 import br.com.challenge.github.ui.MainViewModel
+import com.google.android.material.snackbar.Snackbar
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
 
 class MainFragment : Fragment(), UserListAdapter.ItemClickListener {
@@ -47,7 +47,9 @@ class MainFragment : Fragment(), UserListAdapter.ItemClickListener {
             binding.progressCircular.isVisible = it
         }
 
-        viewModel.loadUsers()
+        viewModel.loadUsers() { error ->
+            showError(error)
+        }
     }
 
     override fun onItemClick(user: UserDTO) {
@@ -86,5 +88,9 @@ class MainFragment : Fragment(), UserListAdapter.ItemClickListener {
                 }
             })
         }
+    }
+
+    private fun showError(message: String) {
+        Snackbar.make(binding.root, message, Snackbar.LENGTH_SHORT).show()
     }
 }

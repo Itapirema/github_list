@@ -2,4 +2,6 @@
     <string name="app_name">Github List</string>
     <string name="action_search">Pesquisar</string>
     <string name="repositories_title">Repositórios</string>
+    <string name="company_label">Company: %s</string>
+    <string name="location_label">Location: %s</string>
 </resources>

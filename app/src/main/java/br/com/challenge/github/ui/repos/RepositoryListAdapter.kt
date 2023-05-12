@@ -6,10 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import br.com.challenge.github.data.dto.RepositoryDTO
-import br.com.challenge.github.data.dto.UserDTO
 import br.com.challenge.github.databinding.LayoutRepositoryListItemBinding
-import br.com.challenge.github.databinding.LayoutUserListItemBinding
-import com.bumptech.glide.Glide
 
 class RepositoryListAdapter(
     private val itemClickListener: ItemClickListener? = null

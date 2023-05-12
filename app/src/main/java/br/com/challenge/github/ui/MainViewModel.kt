@@ -8,7 +8,6 @@ import br.com.challenge.github.data.dto.RepositoryDTO
 import br.com.challenge.github.data.api.RequestCallBack
 import br.com.challenge.github.data.dto.UserDTO
 import br.com.challenge.github.domain.UserUseCase
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class MainViewModel(private val userUseCase: UserUseCase) : ViewModel() {
@@ -19,11 +18,11 @@ class MainViewModel(private val userUseCase: UserUseCase) : ViewModel() {
     private val _repositoryList = MutableLiveData<List<RepositoryDTO>>()
     val repositoryList: LiveData<List<RepositoryDTO>> = _repositoryList
 
-    private val _user = MutableLiveData<UserDTO>()
-    val user: LiveData<UserDTO> = _user
+    private val _user = MutableLiveData<UserDTO?>()
+    val user: LiveData<UserDTO?> = _user
 
-    private val _selectedUser = MutableLiveData<UserDTO>()
-    val selectedUser: LiveData<UserDTO> = _selectedUser
+    private val _selectedUser = MutableLiveData<UserDTO?>()
+    val selectedUser: LiveData<UserDTO?> = _selectedUser
 
     private val _showError = MutableLiveData<String>()
     val showError: LiveData<String> = _showError
@@ -31,7 +30,7 @@ class MainViewModel(private val userUseCase: UserUseCase) : ViewModel() {
     private val _showProgress = MutableLiveData<Boolean>()
     val showProgress: LiveData<Boolean> = _showProgress
 
-    fun loadUsers() {
+    fun loadUsers(onFailure: (String) -> Unit) {
         viewModelScope.launch {
             userUseCase.loadUsers(object : RequestCallBack<List<UserDTO>> {
                 override fun onSuccess(value: List<UserDTO>) {
@@ -39,7 +38,7 @@ class MainViewModel(private val userUseCase: UserUseCase) : ViewModel() {
                 }
 
                 override fun onFailure(message: String) {
-                    _showError.value = message
+                    onFailure.invoke(message)
                 }
 
                 override fun onProgress(shouldShow: Boolean) {
@@ -50,7 +49,7 @@ class MainViewModel(private val userUseCase: UserUseCase) : ViewModel() {
         }
     }
 
-    fun loadUserByName(userName: String) {
+    fun loadUserByName(userName: String, onFailure: (String) -> Unit) {
         viewModelScope.launch {
             userUseCase.loadUserByName(userName, object : RequestCallBack<UserDTO> {
                 override fun onSuccess(value: UserDTO) {
@@ -58,7 +57,7 @@ class MainViewModel(private val userUseCase: UserUseCase) : ViewModel() {
                 }
 
                 override fun onFailure(message: String) {
-                    _showError.value = message
+                    onFailure.invoke(message)
                 }
 
                 override fun onProgress(shouldShow: Boolean) {
@@ -68,7 +67,7 @@ class MainViewModel(private val userUseCase: UserUseCase) : ViewModel() {
         }
     }
 
-    fun loadUserRepositories(userName: String) {
+    fun loadUserRepositories(userName: String, onFailure: (String) -> Unit) {
         viewModelScope.launch {
             userUseCase.loadUserRepositories(
                 userName,
@@ -78,7 +77,7 @@ class MainViewModel(private val userUseCase: UserUseCase) : ViewModel() {
                     }
 
                     override fun onFailure(message: String) {
-                        _showError.value = message
+                        onFailure.invoke(message)
                     }
 
                     override fun onProgress(shouldShow: Boolean) {
@@ -90,5 +89,13 @@ class MainViewModel(private val userUseCase: UserUseCase) : ViewModel() {
 
     fun setSelectedUser(user: UserDTO) {
         _selectedUser.value = user
+    }
+
+    fun clearUser() {
+        _user.value = null
+    }
+
+    fun clearRepositoryList() {
+        _repositoryList.value = emptyList()
     }
 }

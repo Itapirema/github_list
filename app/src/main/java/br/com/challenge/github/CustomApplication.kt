@@ -15,6 +15,5 @@ class CustomApplication : Application() {
             androidLogger()
             modules(AppKoinModule.module)
         }
-
     }
 }

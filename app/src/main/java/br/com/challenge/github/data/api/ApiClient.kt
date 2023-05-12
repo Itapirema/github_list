@@ -13,7 +13,7 @@ object ApiClient {
     fun <T> create(service: Class<T>): T {
 
         val logging = HttpLoggingInterceptor()
-        logging.level = HttpLoggingInterceptor.Level.BASIC
+        logging.level = HttpLoggingInterceptor.Level.NONE
 
         val okHttpClient = OkHttpClient.Builder()
             .addInterceptor(logging)

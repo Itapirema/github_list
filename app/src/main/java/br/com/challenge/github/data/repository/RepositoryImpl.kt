@@ -12,8 +12,9 @@ import retrofit2.HttpException
 class RepositoryImpl : Repository {
 
     companion object {
-        private const val MSG_ERROR_HTTP = "Falha ao carregar os dados."
-        private const val MSG_ERROR_DEFAULT = "Erro desconhecido."
+        private const val CODE_404 = 404
+        private const val MSG_NOT_FOUND = "Usuário não encontrado."
+        private const val MSG_ERROR_DEFAULT = "Falha ao carregar os dados."
     }
 
     override suspend fun getUsers(callback: RequestCallBack<List<UserDTO>>) =
@@ -27,7 +28,7 @@ class RepositoryImpl : Repository {
                 } else callback.onSuccess(users)
             } catch (e: HttpException) {
                 callback.onProgress(false)
-                callback.onFailure(MSG_ERROR_HTTP)
+                callback.onFailure(MSG_ERROR_DEFAULT)
             } catch (e: Throwable) {
                 callback.onProgress(false)
                 callback.onFailure(MSG_ERROR_DEFAULT)
@@ -45,7 +46,8 @@ class RepositoryImpl : Repository {
                 } else callback.onSuccess(user)
             } catch (e: HttpException) {
                 callback.onProgress(false)
-                callback.onFailure(MSG_ERROR_HTTP)
+                val message = if (e.code() == CODE_404) MSG_NOT_FOUND else MSG_ERROR_DEFAULT
+                callback.onFailure(message)
             } catch (e: Throwable) {
                 callback.onProgress(false)
                 callback.onFailure(MSG_ERROR_DEFAULT)
@@ -65,11 +67,10 @@ class RepositoryImpl : Repository {
             } else callback.onSuccess(repos)
         } catch (e: HttpException) {
             callback.onProgress(false)
-            callback.onFailure(MSG_ERROR_HTTP)
+            callback.onFailure(MSG_ERROR_DEFAULT)
         } catch (e: Throwable) {
             callback.onProgress(false)
             callback.onFailure(MSG_ERROR_DEFAULT)
         }
-
     }
 }
